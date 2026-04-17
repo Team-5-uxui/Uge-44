@@ -1,0 +1,37 @@
+---
+const { pathname } = Astro.url;
+
+const navLinks = [
+  { title: "Home", path: "/" },
+  { title: "People", path: "/people" },
+];
+---
+
+<header>
+  <h1>{Astro.url.pathname}</h1>
+  <nav>
+    <ul>
+      {
+        navLinks.map((link) => {
+          return (
+            <li>
+              <a href={link.path} class={pathname === link.path && "active"}>
+                {link.title}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  ul {
+    display: flex;
+  }
+
+  .active {
+    color: hotpink;
+  }
+</style>
