@@ -1,5 +1,45 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import Cards from "../components/Cards.astro";
+import Knapper from "../components/Knapper.astro";
 ---
 
-<PageLayout heading="Home" />
+<PageLayout heading="Home">
+  <Cards
+    title="Min sidste vilje"
+    img="img/SidsteVilje.png"
+    variant="card-kategori"
+  />
+  <Knapper text="Find en støtteven" variant="btn-sekundær" />
+  <Knapper text="Læs mere" variant="btn-primær" />
+  <Knapper text="Tilmeld" variant="btn-tilmeld" />
+  <Knapper text="Se mere" variant="btn-se_mere" />
+  <Cards
+    title="Hun hjalp mig gennem sorgen"
+    text="En støtteven giver tryghed, samtale, forståelse og håb, hjælper med sorg, ensomhed og minder, så livet langsomt føles lettere igen."
+    img="/img/stotteven.png"
+    variant="card-stotteven"
+    showButton={true}
+    buttonText="Find en støtteven"
+    buttonVariant="btn-sekundær"
+  />
+  <Cards
+    title="Dødscafe"
+    text="Dato: 26. Oktober
+Sted: Krystalgade 15, 1172 København"
+    img="/img/dodscafe.png"
+    variant="card-event"
+    showButton={true}
+    buttonText="Læs mere"
+    buttonVariant="btn-primær"
+  />
+
+  <Cards
+    title="Kirsten"
+    text="47 år Mistede sin mand"
+	img="/img/kirsten.png"
+	variant="card-personer"
+    showButton={true}
+    buttonText="Læs mere"
+    buttonVariant="btn-primær"
+>
