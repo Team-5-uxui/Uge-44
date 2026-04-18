@@ -1,0 +1,87 @@
+---
+import Knapper from "./Knapper.astro";
+const { title, img, variant, text, showButton, buttonText, buttonVariant } =
+  Astro.props;
+---
+
+<div class={variant}>
+  <img src={img} alt={title} />
+
+  <div>
+    <h2>{title}</h2>
+    <p>{text}</p>
+
+    {showButton && <Knapper text={buttonText} variant={buttonVariant} />}
+  </div>
+</div>
+
+<style>
+  .card-kategori {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 30px;
+    background-color: #3d2b1f;
+    color: white;
+    width: 450px;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .card-kategori img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+
+<style>
+  .card-stotteven {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 2em;
+    margin-bottom: 5em;
+    text-align: center;
+  }
+
+  .card-stotteven p {
+    max-width: 70%;
+    place-self: center;
+  }
+
+  .card-stotteven img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+
+<style>
+  .card-event {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 70%;
+    margin-bottom: 5em;
+  }
+
+  .card-event h2 {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 30px;
+    margin-top: 2em;
+    background-color: #3d2b1f;
+    color: white;
+    cursor: pointer;
+    max-width: 50%;
+    text-align: center;
+  }
+</style>
+
+<style>
+  .card-personer {
+    
+  }
+
+</style>
