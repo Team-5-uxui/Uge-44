@@ -1,0 +1,52 @@
+---
+const { title, img, story, story2, place, text, buttonText, buttonVariant } = Astro.props;
+import Knapper from "./Knapper.astro";
+---
+
+<div class="popover">
+  <div class="grid_1-1">
+    <img src={img} alt={title} />
+    <div>
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <p>{place}</p>
+    </div>
+  </div>
+  <div>
+    <h3>Om eventet</h3>
+    <p>{story}</p>
+    <p>{story2}</p>
+  </div>
+  <div class="btn"> 
+  {buttonText && (
+    <Knapper text={buttonText} variant={buttonVariant} />
+  )}
+</div>
+</div>
+
+<style>
+  .grid_1-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid_1-1 div {
+    margin-top: 4em;
+    
+  }
+
+  .popover {
+    margin-top: 5em;
+    margin-bottom: 5em;
+    max-width: 70%;
+    background-color: #f3f3f3;
+    color: #322e2b;
+    padding: 2em;
+    border-radius: 30px;
+  }
+
+.popover .btn{
+text-align: end;
+}
+
+</style>
