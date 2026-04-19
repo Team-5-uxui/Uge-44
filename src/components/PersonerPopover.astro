@@ -1,0 +1,47 @@
+---
+const { title, img, intro, story, advice, age, story2 } = Astro.props;
+---
+
+<div class="popover">
+  
+<div class="grid_1-1">
+    <img src={img} alt={title} />
+    <div>
+    <h2>{title}</h2>
+    <p>{age}</p>
+    <p>{intro}</p>
+</div>
+  </div>
+
+  <div>
+    <h3>Min historie</h3>
+    <p>{story}</p>
+    <p>{story2}</p>
+
+    <h3>Mit bedste råd</h3>
+    <p>{advice}</p>
+  </div>
+</div>
+
+<style>
+    .grid_1-1{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .grid_1-1 div{
+        margin-top: 6em;
+        padding-left: 2em;
+    }
+
+    .popover{
+        margin-top: 5em;
+        margin-bottom: 5em;
+        max-width: 70%;
+        background-color: #F3F3F3;
+        color: #322E2B;
+        padding: 2em;
+        border-radius: 30px;
+    }
+
+</style>
