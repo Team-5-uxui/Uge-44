@@ -2,13 +2,12 @@
 const { pathname } = Astro.url;
 
 const navLinks = [
-  { title: "Events", path: "/" },
-  { title: "Mød andre", path: "/people" },
+  { title: "EVENTS", path: "/events" },
+  { title: "MØD ANDRE", path: "/moedAndre" },
 ];
 ---
 
 <header>
-  <h1>{Astro.url.pathname}</h1>
   <nav>
     <ul>
       {
@@ -29,9 +28,14 @@ const navLinks = [
 <style>
   ul {
     display: flex;
+    gap: 5rem;
+    font-size: 1.25em;
   }
 
+  a {
+    color: #2c2520;
+  }
   .active {
-    color: #2C2520;
+    font-weight: bold;
   }
 </style>

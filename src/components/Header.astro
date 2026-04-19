@@ -1,0 +1,37 @@
+---
+import Nav from "./Nav.astro";
+---
+
+<header>
+  <a href="/" class="logo-link">
+    <span class="title">LIV OG DØD ·</span>
+    <img src="/img/logo.svg" alt="Uge 44 logo" />
+  </a>
+  <Nav />
+</header>
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: inherit;
+  }
+
+  .logo-link img {
+    height: 70px;
+    width: auto;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+</style>
