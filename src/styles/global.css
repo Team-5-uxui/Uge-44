@@ -14,5 +14,14 @@ img {
 }
 
 body {
-  margin: 6vw 16vw 0 16vw;
+  margin: 5em 8em;
+  background-image: url(/img/Baggrund.jpg);
+}
+
+main {
+  background-color: #f3f3f3;
+  border-radius: 30px;
+  padding: 2rem;
+  overflow: hidden;
+  margin: 1em 0;
 }
