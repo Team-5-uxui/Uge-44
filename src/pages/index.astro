@@ -1,9 +1,21 @@
 ---
+//@ts-nocheck
 import PageLayout from "../layouts/PageLayout.astro";
 import Cards from "../components/Cards.astro";
 import Knapper from "../components/Knapper.astro";
 import PersonerPopover from "../components/PersonerPopover.astro";
 import EventPopover from "../components/EventPopover.astro";
+
+const options = {
+  headers: {
+    apikey:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1ZHJma2FmYnpmb2NtdXNpdGFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyOTE4NjcsImV4cCI6MjA5MTg2Nzg2N30.A8wujbOYCH_6ffrOhON39YeOmKa2s8US46vDm6J06kU",
+  },
+};
+const url = "https://audrfkafbzfocmusitaa.supabase.co/rest/v1/Personer";
+
+const response = await fetch(url, options);
+const data = await response.json();
 ---
 
 <PageLayout heading="LIV OG DØD ·">
@@ -23,7 +35,18 @@ import EventPopover from "../components/EventPopover.astro";
   />
   <Cards title="Dødscafe" text="Dato: 26. Oktober" place="Sted: Krystalgade 15, 1172 København" img="/img/dodscafe.png" variant="card-event" showButton={true} buttonText="Læs mere" buttonVariant="btn-primær" />
 
-  <Cards title="Kirsten" text="47 år Mistede sin mand" img="/img/kirsten.png" variant="card-personer" showButton={true} buttonText="Læs mere" buttonVariant="btn-primær" />
+{data.map((person) => (
+  <Cards 
+  title={person.name} 
+  text={person.age}
+  lost={person.lost}
+  img={person.photo} 
+  variant="card-personer" 
+  showButton={true} 
+  buttonText="Læs mere" 
+  buttonVariant="btn-primær" />
+))}
+
   <PersonerPopover
     title="Kirsten"
     age="47 år"
