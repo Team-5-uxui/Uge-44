@@ -1,5 +1,5 @@
 ---
-const { title, img, story, story2, place, text, buttonText, buttonVariant } = Astro.props;
+const { eventnavn, img, about, place, text, buttonText, buttonVariant, id } = Astro.props;
 import Knapper from "./Knapper.astro";
 
 const options = {
@@ -14,46 +14,100 @@ const response = await fetch(url, options);
 const data = await response.json();
 ---
 
-<div class="popover">
-  <div class="grid_1-1">
-    <img src={img} alt={title} />
+<dialog id={id} popover>
+  <button class="luk-knap" popovertarget={id} popovertargetaction="hide">✕</button>
+
+  <div class="grid_1-2">
+    <img src={img} alt={eventnavn} />
     <div>
-      <h2>{title}</h2>
+      <h2>{eventnavn}</h2>
       <p>{text}</p>
       <p>{place}</p>
     </div>
   </div>
   <div>
-    <h3>Om eventet</h3>
-    <p>{story}</p>
-    <p>{story2}</p>
+    <h3>Om eventet:</h3>
+    <p>{about}</p>
   </div>
   <div class="btn">
     {buttonText && <Knapper text={buttonText} variant={buttonVariant} />}
   </div>
-</div>
+</dialog>
 
 <style>
-  .grid_1-1 {
+  .grid_1-2 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    gap: 2em;
   }
 
-  .grid_1-1 div {
+  .grid_1-2 div {
     margin-top: 4em;
   }
 
-  .popover {
-    margin-top: 5em;
-    margin-bottom: 5em;
+  dialog[popover] {
     max-width: 70%;
     background-color: #f3f3f3;
     color: #322e2b;
     padding: 2em;
     border-radius: 30px;
+    border: none;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    transition:
+      display 0.3s allow-discrete,
+      overlay 0.3s allow-discrete,
+      opacity 0.3s,
+      transform 0.3s;
+
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .popover .btn {
-    text-align: end;
+  dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  dialog[popover]:not(:popover-open) {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @starting-style {
+    dialog[popover]:popover-open {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+
+  dialog[popover]::backdrop {
+    transition:
+      display 0.3s allow-discrete,
+      overlay 0.3s allow-discrete,
+      opacity 0.3s;
+    opacity: 1;
+  }
+
+  @starting-style {
+    dialog[popover]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  .luk-knap {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #322e2b;
+    line-height: 1;
+  }
+
+  .luk-knap:hover {
+    color: #000;
   }
 </style>

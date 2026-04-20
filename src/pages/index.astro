@@ -7,9 +7,8 @@ import PersonerPopover from "../components/PersonerPopover.astro";
 import EventPopover from "../components/EventPopover.astro";
 
 const options = {
-  headers: { 
-    apikey:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1ZHJma2FmYnpmb2NtdXNpdGFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyOTE4NjcsImV4cCI6MjA5MTg2Nzg2N30.A8wujbOYCH_6ffrOhON39YeOmKa2s8US46vDm6J06kU",
+  headers: {
+    apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1ZHJma2FmYnpmb2NtdXNpdGFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyOTE4NjcsImV4cCI6MjA5MTg2Nzg2N30.A8wujbOYCH_6ffrOhON39YeOmKa2s8US46vDm6J06kU",
   },
 };
 const url = "https://audrfkafbzfocmusitaa.supabase.co/rest/v1/Personer";
@@ -17,6 +16,8 @@ const url = "https://audrfkafbzfocmusitaa.supabase.co/rest/v1/Personer";
 const response = await fetch(url, options);
 const data = await response.json();
 
+const personer = data.filter((p) => p.name);
+const events = data.filter((e) => e.eventnavn);
 ---
 
 <PageLayout heading="LIV OG DØD ·">
@@ -34,71 +35,22 @@ const data = await response.json();
     buttonText="Find en støtteven"
     buttonVariant="btn-sekundær"
   />
-  <Cards title="Dødscafe" text="Dato: 26. Oktober" place="Sted: Krystalgade 15, 1172 København" img="/img/dodscafe.png" variant="card-event" showButton={true} buttonText="Læs mere" buttonVariant="btn-primær" />
 
-{data.map((person) => (
-  <Cards 
-  title={person.name} 
-  text={person.age}
-  lost={person.lost}
-  img={person.photo} 
-  variant="card-personer" 
-  showButton={true} 
-  buttonText="Læs mere" 
-  buttonVariant="btn-primær" />
-))}
+  {
+    events.map((event) => (
+      <>
+        <Cards title={event.eventnavn} text={`Dato: ${event.date}`} place={`Sted: ${event.place}`} img={event.photo} variant="card-event" showButton={true} buttonText="Læs mere" buttonVariant="btn-primær" dialogId={`dialog-${event.id}`} />
+        <EventPopover id={`dialog-${event.id}`} eventnavn={event.eventnavn} text={`Dato: ${event.date}`} place={`Sted: ${event.place}`} img={event.photo} about={event.about} buttonText="Tilmeld" buttonVariant="btn-tilmeld" />
+      </>
+    ))
+  }
 
-  <PersonerPopover
-    title="Kirsten"
-    age="47 år"
-    intro="Mistede sin mand"
-    img="/img/kirsten.png"
-    story="Da min mand fik kræft, troede jeg
-    at vi havde forberedt os. Vi talte om det, vi ordnede papirerne, vi sagde
-    det vi skulle sige. Men ingenting forberedte mig på stilheden bagefter. På
-    at vågne om morgenen og nå at glemme det i et halvt sekund, og så huske det
-    igen. "
-    story2="Det sværeste var ikke de praktiske ting. Det sværeste var de andre
-    mennesker. Dem der ikke ringede fordi de ikke vidste hvad de skulle sige.
-    Dem der sagde `han er et bedre sted nu` når jeg slet ikke var klar til at
-    høre det. Og dem der efter tre måneder syntes jeg burde være ved at være
-    over det. Jeg lærte at man ikke kan vente på at andre gætter hvad man har
-    brug for. Man er nødt til at sige det højt, også selvom det føles
-    mærkeligt."
-    advice="Sig til dine nærmeste hvad du har brug for. De kan ikke gætte det. Og til dem der kender én der sørger: ring. Du behøver ikke have de rigtige ord. Det er nok bare at være der."
-    variant="popover"
-  />
-  <EventPopover
-    title="Dødscafe"
-    text="Dato: 26. Oktober"
-    place="Sted: Krystalgade 15, 1172 København"
-    img="/img/dodscafe.png"
-    story="Vi lever i en tid, hvor vi kan tale om næsten alt, men døden er stadig det emne, de fleste af os skynder os forbi. Ikke fordi vi ikke tænker på det. Men fordi vi ikke ved hvordan vi begynder, og fordi vi er bange for at gøre det værre for dem vi holder af.
-Dødscaféen er et åbent og uformelt møde, hvor du kan tale frit om døden over en kop kaffe og et stykke kage. Der er ingen dagsorden, ingen eksperter der fortæller dig hvad du skal føle, og ingen forkerte spørgsmål. Du kan tale om din egen frygt for at dø, om en du har mistet, om hvad du ønsker der skal ske når din tid kommer, eller du kan bare lytte til andre."
-    story2="Formatet Dødscafé er opstået i England og afholdes i dag i over 80 lande verden over. Idéen er enkel: når vi taler om døden, bliver vi bedre til at leve. Kom som du er. Tag en ven med, eller kom alene. Der er plads til alle."
-    variant="popover"
-    buttonText="Tilmeld"
-    buttonVariant="btn-tilmeld"
-  />
+  {
+    personer.map((person) => (
+      <>
+        <Cards title={person.name} text={person.age} lost={person.lost} img={person.photo} variant="card-personer" showButton={true} buttonText="Læs mere" buttonVariant="btn-primær" dialogId={`dialog-${person.name}`} />
+        <PersonerPopover id={`dialog-${person.name}`} title={person.name} age={person.age} img={person.photo} lost={person.lost} story={person.story} advice={person.advice} />
+      </>
+    ))
+  }
 </PageLayout>
-
-
-
-<script>
-  const buttons = document.querySelectorAll(".open-person");
-  const popover = document.getElementById("person-popover");
-
-  const titleEl = popover.querySelector("h2");
-  const imgEl = popover.querySelector("img");
-  const textEl = popover.querySelector("p");
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      titleEl.textContent = btn.dataset.name;
-      imgEl.src = btn.dataset.img;
-      textEl.textContent = btn.dataset.text;
-
-      popover.classList.remove("hidden");
-    });
-  });
-</script>
