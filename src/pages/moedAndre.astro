@@ -21,6 +21,8 @@ const events = data.filter((e) => e.eventnavn);
 ---
 
 <PageLayout>
+  <h1>Mød andre som dig</h1>
+
   {
     personer.map((person) => (
       <>
@@ -30,3 +32,10 @@ const events = data.filter((e) => e.eventnavn);
     ))
   }
 </PageLayout>
+
+<style>
+  h1 {
+    text-align: center;
+    margin-top: 2em;
+  }
+</style>

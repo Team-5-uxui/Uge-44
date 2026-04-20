@@ -13,7 +13,7 @@ const data = await response.json();
 
 <dialog id={id} popover>
   <button class="luk-knap" popovertarget={id} popovertargetaction="hide">✕</button>
-  <div class="grid_1-1">
+  <div class="grid_1-2">
     <img src={img} alt={title} />
     <div>
       <h2>{title}</h2>
@@ -30,12 +30,12 @@ const data = await response.json();
 </dialog>
 
 <style>
-  .grid_1-1 {
+  .grid_1-2 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
   }
 
-  .grid_1-1 div {
+  .grid_1-2 div {
     margin-top: 6em;
     padding-left: 2em;
   }
@@ -55,6 +55,14 @@ const data = await response.json();
   }
 
   dialog[popover] {
+    max-width: 70%;
+    background-color: #f3f3f3;
+    color: #322e2b;
+    padding: 2em;
+    border-radius: 30px;
+    border: none;
+    max-height: 80vh;
+    overflow-y: auto;
     transition:
       display 0.3s allow-discrete,
       overlay 0.3s allow-discrete,
