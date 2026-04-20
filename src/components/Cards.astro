@@ -1,6 +1,6 @@
 ---
 import Knapper from "./Knapper.astro";
-const { title, img, variant, text, showButton, buttonText, buttonVariant, place } =
+const { title, img, variant, text, showButton, buttonText, buttonVariant, place, lost } =
   Astro.props;
 ---
 
@@ -10,6 +10,7 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place 
   <div>
     <h2>{title}</h2>
     <p>{text}</p>
+    <p>{lost}</p>
     <p>{place}</p>
 
     {showButton && <Knapper text={buttonText} variant={buttonVariant} />}
