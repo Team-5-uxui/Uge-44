@@ -18,15 +18,120 @@ const data = await response.json();
 
 const personer = data.filter((p) => p.name);
 const events = data.filter((e) => e.eventnavn);
+
+events.sort((a, b) => a.id - b.id);
 ---
 
 <PageLayout>
-  {
-    events.map((event) => (
-      <>
-        <Cards title={event.eventnavn} text={`Dato: ${event.date}`} place={`Sted: ${event.place}`} img={event.photo} variant="card-event" showButton={true} buttonText="Læs mere" buttonVariant="btn-primær" dialogId={`dialog-${event.id}`} />
-        <EventPopover id={`dialog-${event.id}`} eventnavn={event.eventnavn} text={`Dato: ${event.date}`} place={`Sted: ${event.place}`} img={event.photo} about={event.about} buttonText="Tilmeld" buttonVariant="btn-tilmeld" />
-      </>
-    ))
-  }
+  <h1>Events</h1>
+
+  <div class="side-layout">
+    <div id="events-container">
+      {
+        events.map((event) => (
+          <>
+            <Cards
+              title={event.eventnavn}
+              text={`Dato: ${event.date}`}
+              place={`Sted: ${event.place}`}
+              img={event.photo}
+              variant="card-event"
+              showButton={true}
+              buttonText="Læs mere"
+              buttonVariant="btn-primær"
+              dialogId={`dialog-${event.id}`}
+              city={event.cityId}
+              date={event.date}
+            />
+            <EventPopover id={`dialog-${event.id}`} eventnavn={event.eventnavn} text={`Dato: ${event.date}`} place={`Sted: ${event.place}`} img={event.photo} about={event.about} buttonText="Tilmeld" buttonVariant="btn-tilmeld" />
+          </>
+        ))
+      }
+    </div>
+    <div class="filter-boks">
+      <h3>Filtre</h3>
+      <label for="city">By</label>
+      <select name="city" id="city">
+        <option value="all">Vælg en by</option>
+        <option value="københavn">København</option>
+        <option value="odense">Odense</option>
+        <option value="aarhus">Aarhus</option>
+      </select>
+
+      <label for="day">Dag</label>
+      <select name="day" id="day">
+        <option value="all">Vælg en dag</option>
+        <option value="26. Oktober">26. Oktober</option>
+        <option value="28. Oktober">28. Oktober</option>
+        <option value="29. Oktober">29. Oktober</option>
+        <option value="1. November">1. November</option>
+      </select>
+    </div>
+  </div>
 </PageLayout>
+
+<script>
+  const citySelect = document.getElementById("city") as HTMLSelectElement;
+  const daySelect = document.getElementById("day") as HTMLSelectElement;
+  const cards = document.querySelectorAll("#events-container .card-event");
+
+  function filterCards() {
+    const valgtBy = citySelect.value;
+    const valgtDag = daySelect.value;
+
+    cards.forEach((card) => {
+      const cardCity = card.getAttribute("data-city") || "";
+      const cardDate = card.getAttribute("data-date") || "";
+
+      const byMatch = valgtBy === "all" || cardCity === valgtBy;
+      const dagMatch = valgtDag === "all" || cardDate === valgtDag;
+
+      (card as HTMLElement).style.display = byMatch && dagMatch ? "" : "none";
+    });
+  }
+
+  citySelect.addEventListener("change", filterCards);
+  daySelect.addEventListener("change", filterCards);
+</script>
+
+<style>
+  h1 {
+    text-align: center;
+    padding-top: 2em;
+  }
+
+  .side-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    align-items: start;
+  }
+
+  .filter-boks {
+    position: sticky;
+    top: 2rem;
+    background-color: #3d2b1f;
+    color: white;
+    border-radius: 20px;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-right: 2em;
+  }
+
+  .filter-boks select {
+    padding: 0.75em 1em;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    background-color: white;
+    color: #3d2b1f;
+    cursor: pointer;
+  }
+
+  .filter-boks h3 {
+    color: white;
+    margin-bottom: 0.5em;
+    margin-top: 0;
+  }
+</style>

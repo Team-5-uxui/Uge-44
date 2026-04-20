@@ -1,9 +1,9 @@
 ---
 import Knapper from "./Knapper.astro";
-const { title, img, variant, text, showButton, buttonText, buttonVariant, place, lost, dialogId } = Astro.props;
+const { title, img, variant, text, showButton, buttonText, buttonVariant, place, lost, dialogId, city, date } = Astro.props;
 ---
 
-<div class={variant}>
+<div class={variant} data-city={city} data-date={date}>
   <img src={img} alt={title} />
 
   <div>
@@ -67,13 +67,13 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place,
     grid-template-columns: 1fr 1fr;
     max-width: 70%;
     margin: 4em;
+    gap: 2em;
   }
 
   .card-event h2 {
     padding: 0.5rem 2rem;
     border: none;
     border-radius: 30px;
-    margin-top: 2em;
     background-color: #3d2b1f;
     color: white;
     cursor: pointer;
