@@ -25,3 +25,150 @@ main {
   overflow: hidden;
   margin: 1em 0;
 }
+/* Farvevariabler */
+html {
+  /* Primary colors */
+  --primary-section-bg: #f3f3f3;
+  --primary-bg: #dce4f8;
+  --hourglass-bg-color: #e7ecf9;
+  --hourglass-logo-color: #adc5ff;
+
+  /* Font colors */
+  --heading-color: #2c2520;
+  --text-color: #433e3b;
+  --text-inverted: #ffffff;
+
+  /* Buttons */
+  --primary-btn: #3d2b1f;
+  --hover-btn: #2c2520;
+  --secondary-btn-bg: #f3f3f3;
+
+  /* Cards */
+  --primary-brown: #3d2b1f;
+  --filter-bg: #2c2520;
+  --filter-input-bg: #ffffff;
+}
+
+/* Fonts Desktop */
+h1 {
+  font-family: "Vollkorn Bold";
+  font-weight: 700;
+  font-size: 3rem;
+}
+h2 {
+  font-family: "Vollkorn SemiBold";
+  font-weight: 600;
+  font-size: 2.25rem;
+}
+h3 {
+  font-family: "Vollkorn Medium";
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+h4 {
+  font-family: "Vollkorn Regular";
+  font-weight: 400;
+  font-size: 1.375rem;
+}
+h5 {
+  font-family: "Lexend SemiBold";
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+.heroText {
+  font-family: "Vollkorn Regular";
+  font-weight: 400;
+  font-size: 6rem;
+}
+p,
+.cta_btn,
+.label {
+  font-family: "Lexend Light";
+  font-weight: 300;
+  font-size: 1.25rem;
+}
+.category_cta {
+  font-family: "Lexend Light";
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+nav {
+  font-family: "Lexend Regular";
+  font-weight: 400;
+  font-size: 2.25rem;
+}
+.logo_text {
+  font-family: "Lexend Medium";
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.dropdown_input {
+  font-family: "Lexend ExtraLight";
+  font-weight: 200;
+  font-size: 1rem;
+}
+
+/* Fonts Mobile */
+@media (max-width: 800px) {
+  h1 {
+    font-family: "Vollkorn Bold";
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  h2 {
+    font-family: "Vollkorn SemiBold";
+    font-weight: 600;
+    font-size: 1.625rem;
+  }
+  h3 {
+    font-family: "Vollkorn Medium";
+    font-weight: 500;
+    font-size: 1.4375rem;
+  }
+  h4 {
+    font-family: "Vollkorn Regular";
+    font-weight: 400;
+    font-size: 1.375rem;
+  }
+  h5 {
+    font-family: "Lexend SemiBold";
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+  .heroText {
+    font-family: "Vollkorn Regular";
+    font-weight: 400;
+    font-size: 2.125rem;
+  }
+  p,
+  .cta_btn {
+    font-family: "Lexend Light";
+    font-weight: 300;
+    font-size: 1rem;
+  }
+  .category_cta {
+    font-family: "Lexend Light";
+    font-weight: 300;
+    font-size: 1.4375rem;
+  }
+  nav {
+    font-family: "Lexend Regular";
+    font-weight: 400;
+    font-size: 1.375rem;
+  }
+  .logo_text {
+    font-family: "Lexend Medium";
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  .dropdown_input {
+    font-family: "Lexend ExtraLight";
+    font-weight: 200;
+    font-size: 1rem;
+  }
+  .label {
+    font-family: "Lexend Light";
+    font-weight: 300;
+    font-size: 1.125rem;
+  }
+}

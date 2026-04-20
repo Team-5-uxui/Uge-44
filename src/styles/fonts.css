@@ -1,0 +1,55 @@
+/* Fonts */
+
+/* H1 */
+@font-face {
+  font-family: "Vollkorn Bold";
+  src: url("../fonts/Vollkorn-VariableFont_wght.ttf");
+}
+
+/* H2 */
+@font-face {
+  font-family: "Vollkorn SemiBold";
+  src: url("../fonts/Vollkorn-VariableFont_wght.ttf");
+}
+
+/* H3 */
+@font-face {
+  font-family: "Vollkorn Medium";
+  src: url("../fonts/Vollkorn-VariableFont_wght.ttf");
+}
+
+/* H4 + Hero */
+@font-face {
+  font-family: "Vollkorn Regular";
+  src: url("../fonts/Vollkorn-VariableFont_wght.ttf");
+}
+
+/* H5 */
+@font-face {
+  font-family: "Lexend SemiBold";
+  src: url("../fonts/Lexend-VariableFont_wght.ttf");
+}
+
+/* P + CTA + Kategori CTA + Label */
+@font-face {
+  font-family: "Lexend Light";
+  src: url("../fonts/Lexend-VariableFont_wght.ttf");
+}
+
+/* Nav Text */
+@font-face {
+  font-family: "Lexend Regular";
+  src: url("../fonts/Lexend-VariableFont_wght.ttf");
+}
+
+/* Logo Text */
+@font-face {
+  font-family: "Lexend Medium";
+  src: url("../fonts/Lexend-VariableFont_wght.ttf");
+}
+
+/* Dropdown Input */
+@font-face {
+  font-family: "Lexend ExtraLight";
+  src: url("../fonts/Lexend-VariableFont_wght.ttf");
+}
