@@ -10,11 +10,12 @@ const url = "https://audrfkafbzfocmusitaa.supabase.co/rest/v1/Personer";
 
 const response = await fetch(url, options);
 const data = await response.json();
+
 ---
 
 
 
-<div class="popover">
+<div id="person-popover" class="popover hidden">
   
 <div class="grid_1-1">
     <img src={img} alt={title} />
@@ -36,6 +37,10 @@ const data = await response.json();
 </div>
 
 <style>
+.hidden{
+    display: none;
+}
+
     .grid_1-1{
         display: grid;
         grid-template-columns: 1fr 1fr;
