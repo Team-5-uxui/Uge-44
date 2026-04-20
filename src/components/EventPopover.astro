@@ -1,6 +1,17 @@
 ---
 const { title, img, story, story2, place, text, buttonText, buttonVariant } = Astro.props;
 import Knapper from "./Knapper.astro";
+
+const options = {
+  headers: {
+    apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFic3VmbXdrbGFicW1hZHdjZ2pwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyOTE3NjIsImV4cCI6MjA5MTg2Nzc2Mn0.Mqg9pBJxpA-9JPfMoh_xioh3TdfMQgieL4Wbrtp83Ao",
+  },
+};
+
+const url = "https://qbsufmwklabqmadwcgjp.supabase.co/rest/v1/events";
+
+const response = await fetch(url, options);
+const data = await response.json();
 ---
 
 <div class="popover">
@@ -17,11 +28,9 @@ import Knapper from "./Knapper.astro";
     <p>{story}</p>
     <p>{story2}</p>
   </div>
-  <div class="btn"> 
-  {buttonText && (
-    <Knapper text={buttonText} variant={buttonVariant} />
-  )}
-</div>
+  <div class="btn">
+    {buttonText && <Knapper text={buttonText} variant={buttonVariant} />}
+  </div>
 </div>
 
 <style>
@@ -32,7 +41,6 @@ import Knapper from "./Knapper.astro";
 
   .grid_1-1 div {
     margin-top: 4em;
-    
   }
 
   .popover {
@@ -45,8 +53,7 @@ import Knapper from "./Knapper.astro";
     border-radius: 30px;
   }
 
-.popover .btn{
-text-align: end;
-}
-
+  .popover .btn {
+    text-align: end;
+  }
 </style>
