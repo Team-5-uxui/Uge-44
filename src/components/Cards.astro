@@ -1,7 +1,6 @@
 ---
 import Knapper from "./Knapper.astro";
-const { title, img, variant, text, showButton, buttonText, buttonVariant, place, lost } =
-  Astro.props;
+const { title, img, variant, text, showButton, buttonText, buttonVariant, place, lost, dialogId } = Astro.props;
 ---
 
 <div class={variant}>
@@ -13,17 +12,7 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place,
     <p>{lost}</p>
     <p>{place}</p>
 
- {showButton && (
-  <Knapper 
-    text={buttonText}
-    variant={buttonVariant}
-
-    class="open-person"
-    data-name={title}
-    data-img={img}
-    data-text={text}
-  />
-)}
+    {showButton && <Knapper text={buttonText} variant={buttonVariant} popovertarget={dialogId} class="open-person" data-name={title} data-img={img} data-text={text} />}
     <slot />
   </div>
 </div>
@@ -80,21 +69,19 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place,
   }
 
   .card-event h2 {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     border: none;
     border-radius: 30px;
     margin-top: 2em;
     background-color: #3d2b1f;
     color: white;
     cursor: pointer;
-    max-width: 50%;
+    max-width: fit-content;
     text-align: center;
   }
 </style>
 
 <style>
   .card-personer {
-    
   }
-
 </style>
