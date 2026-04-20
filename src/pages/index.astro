@@ -5,6 +5,7 @@ import Cards from "../components/Cards.astro";
 import Knapper from "../components/Knapper.astro";
 import PersonerPopover from "../components/PersonerPopover.astro";
 import EventPopover from "../components/EventPopover.astro";
+import { Image } from "astro:assets";
 
 const options = {
   headers: {
@@ -18,14 +19,47 @@ const data = await response.json();
 
 const personer = data.filter((p) => p.name);
 const events = data.filter((e) => e.eventnavn);
+
+const selectedIds = [5, 4, 7];
+
+const selectedEvents = events.filter((event) => selectedIds.includes(event.id));
 ---
 
-<PageLayout heading="LIV OG DØD ·">
-  <Cards title="Min sidste vilje" img="img/SidsteVilje.png" variant="card-kategori" />
-  <Knapper text="Find en støtteven" variant="btn-sekundær" />
-  <Knapper text="Læs mere" variant="btn-primær" id="open-popover" />
-  <Knapper text="Tilmeld" variant="btn-tilmeld" />
-  <Knapper text="Se mere" variant="btn-se_mere" />
+<PageLayout>
+  <div class="grid_1">
+    <img src="/img/hero.jpg" alt="2 hænder der holder i hånden foran solnedgangen" class="hero" />
+    <h1 class="hero-text">Tid til at tale om det</h1>
+  </div>
+  <div class="grid_1-1">
+    <a href="https://livogdoed.dk/temaer/min-sidste-vilje/" target="_blank">
+      <Cards title="Min sidste vilje" img="img/SidsteVilje.png" variant="card-kategori" />
+    </a>
+    <a href="https://livogdoed.dk/wp-content/uploads/Filmliste.pdf" target="_blank">
+      <Cards title="Inspiration" img="img/inspiration.png" variant="card-kategori" />
+    </a>
+    <a href="https://vaagetjeneste.dk/" target="_blank">
+      <Cards title="Vågekone" img="img/vaagekone.png" variant="card-kategori" />
+    </a>
+    <a href="/events">
+      <Cards title="Events" img="img/events.png" variant="card-kategori" />
+    </a>
+  </div>
+  <h2>Kommende events</h2>
+  <div class="grid_1-1-1">
+    {
+      selectedEvents.map((event) => (
+        <>
+          <Cards title={event.eventnavn} text={`Dato: ${event.date}`} place={`Sted: ${event.place}`} img={event.photo} variant="card-event-vertikal" showButton={true} buttonText="Læs mere" buttonVariant="btn-primær" dialogId={`dialog-${event.id}`} />
+          <EventPopover id={`dialog-${event.id}`} eventnavn={event.eventnavn} text={`Dato: ${event.date}`} place={`Sted: ${event.place}`} img={event.photo} about={event.about} buttonText="Tilmeld" buttonVariant="btn-tilmeld" />
+        </>
+      ))
+    }
+  </div>
+  <div class="divider">
+    <a href="/events">
+      <Knapper text="Se mere" variant="btn-se_mere" class="btn-se_mere" />
+    </a>
+  </div>
   <Cards
     title="Hun hjalp mig gennem sorgen"
     text="En støtteven giver tryghed, samtale, forståelse og håb, hjælper med sorg, ensomhed og minder, så livet langsomt føles lettere igen."
@@ -35,22 +69,85 @@ const events = data.filter((e) => e.eventnavn);
     buttonText="Find en støtteven"
     buttonVariant="btn-sekundær"
   />
-
-  {
-    events.map((event) => (
-      <>
-        <Cards title={event.eventnavn} text={`Dato: ${event.date}`} place={`Sted: ${event.place}`} img={event.photo} variant="card-event" showButton={true} buttonText="Læs mere" buttonVariant="btn-primær" dialogId={`dialog-${event.id}`} />
-        <EventPopover id={`dialog-${event.id}`} eventnavn={event.eventnavn} text={`Dato: ${event.date}`} place={`Sted: ${event.place}`} img={event.photo} about={event.about} buttonText="Tilmeld" buttonVariant="btn-tilmeld" />
-      </>
-    ))
-  }
-
-  {
-    personer.map((person) => (
-      <>
-        <Cards title={person.name} text={person.age} lost={person.lost} img={person.photo} variant="card-personer" showButton={true} buttonText="Læs mere" buttonVariant="btn-primær" dialogId={`dialog-${person.name}`} />
-        <PersonerPopover id={`dialog-${person.name}`} title={person.name} age={person.age} img={person.photo} lost={person.lost} story={person.story} advice={person.advice} />
-      </>
-    ))
-  }
 </PageLayout>
+
+<style>
+  .hero {
+    width: 100%;
+    height: auto;
+    display: block;
+    grid-area: 1 / 1;
+    margin-bottom: 4em;
+  }
+
+  .hero-text {
+    font-family: "Vollkorn";
+    font-weight: 400;
+    font-size: 5rem;
+    grid-area: 1 / 1;
+    place-self: center;
+    margin-top: 3em;
+    color: var(--primary-brown);
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0.2em 0.5em;
+    border-radius: 30px;
+  }
+
+  .grid_1 {
+    display: grid;
+  }
+
+  .grid_1-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+    place-self: center;
+    margin: 0 3em 4em 3em;
+  }
+
+  h2 {
+    text-align: center;
+    color: var(--heading-color);
+  }
+
+  .grid_1-1-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+    place-self: center;
+    margin: 0 3em 4em 3em;
+  }
+
+  .btn-se_mere {
+    display: block;
+    margin: 0 auto 3.5em auto;
+    z-index: 10;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .divider::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--line-color);
+    top: 50%;
+    left: 0;
+    transform: translateY(-1400%);
+  }
+
+  .divider button {
+    position: relative;
+    z-index: 1;
+    background: var(--primary-section-bg);
+    padding: 10px 20px;
+    border: 2px solid var(--hover-btn);
+    border-radius: 20px;
+  }
+</style>
