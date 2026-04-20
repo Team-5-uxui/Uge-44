@@ -1,8 +1,8 @@
 ---
-const { text, variant } = Astro.props;
+const { text, variant, id, class: extraClass, ...rest } = Astro.props;
 ---
 
-<button class={variant}>
+<button id={id} class={`btn ${variant} ${extraClass || ""}`} {...rest}>
   {text}
 </button>
 

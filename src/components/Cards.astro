@@ -13,7 +13,17 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place,
     <p>{lost}</p>
     <p>{place}</p>
 
-    {showButton && <Knapper text={buttonText} variant={buttonVariant} />}
+ {showButton && (
+  <Knapper 
+    text={buttonText}
+    variant={buttonVariant}
+
+    class="open-person"
+    data-name={title}
+    data-img={img}
+    data-text={text}
+  />
+)}
     <slot />
   </div>
 </div>
