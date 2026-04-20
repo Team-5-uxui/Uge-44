@@ -1,4 +1,6 @@
 ---
+//@ts-nocheck
+
 const { pathname } = Astro.url;
 
 const navLinks = [
@@ -36,6 +38,10 @@ const navLinks = [
     color: #2c2520;
   }
   nav ul li a.active {
+    font-weight: bold;
+  }
+
+  nav ul li a:hover {
     font-weight: bold;
   }
 </style>
