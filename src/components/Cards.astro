@@ -1,6 +1,6 @@
 ---
 import Knapper from "./Knapper.astro";
-const { title, img, variant, text, showButton, buttonText, buttonVariant, place, lost, dialogId, city, date } = Astro.props;
+const { title, img, variant, text, showButton, buttonText, buttonVariant, place, lost, dialogId, city, date, href } = Astro.props;
 ---
 
 <div class={variant} data-city={city} data-date={date}>
@@ -12,7 +12,16 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place,
     <p>{lost}</p>
     <p>{place}</p>
 
-    {showButton && <Knapper text={buttonText} variant={buttonVariant} popovertarget={dialogId} class="open-person" data-name={title} data-img={img} data-text={text} />}
+    {
+      showButton &&
+        (href ? (
+          <a href={href} target="_blank">
+            <Knapper text={buttonText} variant={buttonVariant} />
+          </a>
+        ) : (
+          <Knapper text={buttonText} variant={buttonVariant} popovertarget={dialogId} />
+        ))
+    }
     <slot />
   </div>
 </div>
