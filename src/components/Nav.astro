@@ -4,12 +4,12 @@
 const { pathname } = Astro.url;
 
 const navLinks = [
-  { title: "Hjem", path: "/" },
+  { title: "HJEM", path: "/" },
   { title: "EVENTS", path: "/events" },
   { title: "MØD ANDRE", path: "/moedAndre" },
 ];
 
-const desktopLinks = navLinks.filter((l) => l.title !== "Hjem");
+const desktopLinks = navLinks.filter((l) => l.title !== "HJEM");
 ---
 
 <nav>
@@ -72,7 +72,7 @@ const desktopLinks = navLinks.filter((l) => l.title !== "Hjem");
   }
 
   nav ul li a {
-    color: #2c2520;
+    color: var(--heading-color);
     font-family: "Lexend", sans-serif;
     font-weight: 400;
   }
@@ -98,7 +98,7 @@ const desktopLinks = navLinks.filter((l) => l.title !== "Hjem");
     display: block;
     width: 25px;
     height: 3px;
-    background-color: #2c2520;
+    background-color: var(--heading-color);
     border-radius: 3px;
   }
 
@@ -107,7 +107,7 @@ const desktopLinks = navLinks.filter((l) => l.title !== "Hjem");
     position: absolute;
     top: 70px;
     right: 1rem;
-    background-color: #f3f3f3;
+    background-color: var(--primary-section-bg);
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     flex-direction: column;
@@ -125,7 +125,7 @@ const desktopLinks = navLinks.filter((l) => l.title !== "Hjem");
     font-size: 1.25rem;
     font-family: "Lexend", sans-serif;
     font-weight: 400;
-    color: #2c2520;
+    color: var(--heading-color);
   }
 
   .mobil-menu a.active {
@@ -140,7 +140,7 @@ const desktopLinks = navLinks.filter((l) => l.title !== "Hjem");
     border: none;
     font-size: 1.25rem;
     cursor: pointer;
-    color: #2c2520;
+    color: var(--heading-color);
     line-height: 1;
   }
 

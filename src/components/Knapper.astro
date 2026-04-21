@@ -12,22 +12,22 @@ const { text, variant, id, class: extraClass, ...rest } = Astro.props;
     border: none;
     border-radius: 30px;
     margin-top: 2em;
-    background-color: #3d2b1f;
-    color: white;
+    background-color: var(--primary-btn);
+    color: var(--text-inverted);
     cursor: pointer;
   }
 
   .btn-sekundær:hover {
-    background-color: #2c2520;
+    background-color: var(--hover-btn);
   }
 
   .btn-primær {
     padding: 0.5rem 1rem;
-    border: #2c2520 2px solid;
+    border: var(--hover-btn) 2px solid;
     border-radius: 30px;
     margin-top: 2em;
-    background-color: #f3f3f3;
-    color: #2c2520;
+    background-color: var(--primary-section-bg);
+    color: var(--heading-color);
     cursor: pointer;
   }
 
@@ -40,22 +40,22 @@ const { text, variant, id, class: extraClass, ...rest } = Astro.props;
     border: none;
     border-radius: 30px;
     margin-top: 2em;
-    background-color: #3d2b1f;
-    color: white;
+    background-color: var(--primary-btn);
+    color: var(--text-inverted);
     cursor: pointer;
   }
 
   .btn-tilmeld:hover {
-    background-color: #2c2520;
+    background-color: var(--hover-btn);
   }
 
   .btn-se_mere {
     padding: 0.5rem 1rem;
-    border: #2c2520 2px solid;
+    border: var(--hover-btn) 2px solid;
     border-radius: 30px;
     margin-top: 2em;
-    background-color: #f3f3f3;
-    color: #2c2520;
+    background-color: var(--primary-section-bg);
+    color: var(--heading-color);
     cursor: pointer;
   }
 

@@ -21,14 +21,13 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place,
   .card-kategori {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 3em;
+    gap: 2em;
     border: none;
-    padding: 0.5em 3em;
+    padding: 0.5em 2em;
     border-radius: 30px;
-    background-color: #3d2b1f;
+    background-color: var(--primary-btn);
     color: white;
-    width: fit-content;
-    text-align: center;
+    width: 100%;
     align-items: center;
     cursor: pointer;
     box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.2);
@@ -74,8 +73,8 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place,
     padding: 0.5rem 2rem;
     border: none;
     border-radius: 30px;
-    background-color: #3d2b1f;
-    color: white;
+    background-color: var(--primary-btn);
+    color: var(--text-inverted);
     cursor: pointer;
     max-width: fit-content;
     text-align: center;
@@ -100,8 +99,8 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place,
     padding: 0.5rem 2rem;
     border: none;
     border-radius: 30px;
-    background-color: #3d2b1f;
-    color: white;
+    background-color: var(--primary-btn);
+    color: var(--text-inverted);
     cursor: pointer;
   }
 </style>
@@ -119,8 +118,8 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place,
     border: none;
     border-radius: 30px;
     margin-top: 2em;
-    background-color: #3d2b1f;
-    color: white;
+    background-color: var(--primary-btn);
+    color: var(--text-inverted);
     cursor: pointer;
     max-width: fit-content;
     text-align: center;

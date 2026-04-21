@@ -56,8 +56,8 @@ const data = await response.json();
 
   dialog[popover] {
     max-width: 70%;
-    background-color: #f3f3f3;
-    color: #322e2b;
+    background-color: var(--primary-section-bg);
+    color: var(--text-color);
     padding: 2em;
     border-radius: 30px;
     border: none;
@@ -107,11 +107,31 @@ const data = await response.json();
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: #322e2b;
+    color: var(--text-color);
     line-height: 1;
   }
 
   .luk-knap:hover {
-    color: #000;
+    color: var(--heading-color);
+  }
+
+  @media (max-width: 800px) {
+    .grid_1-2 {
+      grid-template-columns: 1fr;
+      gap: 1em;
+    }
+
+    .grid_1-2 div {
+      margin-top: 0;
+      padding-left: 0;
+    }
+
+    dialog[popover] {
+      max-width: 90%;
+    }
+
+    .grid_1-2 img {
+      margin: 0 auto;
+    }
   }
 </style>
