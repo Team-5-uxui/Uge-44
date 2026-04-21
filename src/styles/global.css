@@ -171,3 +171,13 @@ nav {
     font-size: 1.125rem;
   }
 }
+
+@media (max-width: 800px) {
+  body {
+    margin: 0.5em 2em;
+  }
+
+  main {
+    padding-bottom: 1em;
+  }
+}

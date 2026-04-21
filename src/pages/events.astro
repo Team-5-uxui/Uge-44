@@ -134,4 +134,37 @@ events.sort((a, b) => a.id - b.id);
     margin-bottom: 0.5em;
     margin-top: 0;
   }
+
+  @media (max-width: 800px) {
+    .side-layout {
+      grid-template-columns: 1fr; /* ← én kolonne */
+      grid-template-rows: auto auto;
+    }
+
+    /* Filterboks øverst på mobil */
+    .filter-boks {
+      grid-row: 1;
+      position: static; /* ← ikke sticky på mobil */
+      margin: 1em 1em 1.5em 1em;
+      gap: 1em;
+    }
+
+    .filter-boks h3 {
+      width: 100%; /* ← titel fylder hele bredden */
+    }
+
+    .filter-boks label {
+      display: none; /* ← skjul labels, placeholder tekst er nok */
+    }
+
+    .filter-boks select {
+      flex: 1; /* ← de to selects deler pladsen */
+      min-width: 120px;
+    }
+
+    /* Events container under filteret */
+    #events-container {
+      grid-row: 2;
+    }
+  }
 </style>
