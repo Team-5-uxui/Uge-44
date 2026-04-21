@@ -152,4 +152,26 @@ const selectedEvents = events.filter((event) => selectedIds.includes(event.id));
     border: 2px solid var(--hover-btn);
     border-radius: 20px;
   }
+
+  @media (max-width: 800px) {
+    .hero-text {
+      font-size: 2rem;
+      margin-top: 2em;
+      padding: 0.2em 0.4em;
+    }
+
+    .grid_1-1 {
+      grid-template-columns: 1fr;
+      margin: 0 0 2em 0;
+    }
+
+    .grid_1-1-1 {
+      grid-template-columns: 1fr;
+      margin: 0 1em 2em 1em;
+    }
+
+    .hero {
+      margin-bottom: 2em;
+    }
+  }
 </style>

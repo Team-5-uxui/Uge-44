@@ -4,44 +4,152 @@
 const { pathname } = Astro.url;
 
 const navLinks = [
+  { title: "Hjem", path: "/" },
   { title: "EVENTS", path: "/events" },
   { title: "MØD ANDRE", path: "/moedAndre" },
 ];
+
+const desktopLinks = navLinks.filter((l) => l.title !== "Hjem");
 ---
 
-<header>
-  <nav>
-    <ul>
-      {
-        navLinks.map((link) => {
-          return (
-            <li>
-              <a href={link.path} class={pathname === link.path && "active"}>
-                {link.title}
-              </a>
-            </li>
-          );
-        })
-      }
-    </ul>
-  </nav>
-</header>
+<nav>
+  <ul>
+    {
+      desktopLinks.map((link) => {
+        return (
+          <li>
+            <a href={link.path} class={pathname === link.path && "active"}>
+              {link.title}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
 
-<style>
+<button class="hamburger" id="hamburger" aria-label="Menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div class="mobil-menu" id="mobil-menu">
+  <button class="luk-menu" id="luk-menu">✕</button>
+  {
+    navLinks.map((link) => (
+      <a href={link.path} class={pathname === link.path ? "active" : ""}>
+        {link.title}
+      </a>
+    ))
+  }
+</div>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobilMenu = document.getElementById("mobil-menu");
+  const lukMenu = document.getElementById("luk-menu");
+
+  hamburger?.addEventListener("click", () => {
+    mobilMenu?.classList.toggle("open");
+  });
+
+  lukMenu?.addEventListener("click", () => {
+    mobilMenu?.classList.remove("open");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!hamburger?.contains(e.target as Node) && !mobilMenu?.contains(e.target as Node)) {
+      mobilMenu?.classList.remove("open");
+    }
+  });
+</script>
+
+<style is:global>
   nav ul {
     display: flex;
     gap: 5rem;
-    font-size: 1.25em;
   }
 
   nav ul li a {
     color: #2c2520;
+    font-family: "Lexend", sans-serif;
+    font-weight: 400;
   }
+
   nav ul li a.active {
     font-weight: bold;
   }
-
   nav ul li a:hover {
     font-weight: bold;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #2c2520;
+    border-radius: 3px;
+  }
+
+  .mobil-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 1rem;
+    background-color: #f3f3f3;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    padding: 3rem 4rem 3rem 3rem;
+    gap: 3rem;
+    z-index: 100;
+    min-width: 200px;
+  }
+
+  .mobil-menu.open {
+    display: flex;
+  }
+
+  .mobil-menu a {
+    font-size: 1.25rem;
+    font-family: "Lexend", sans-serif;
+    font-weight: 400;
+    color: #2c2520;
+  }
+
+  .mobil-menu a.active {
+    font-weight: bold;
+  }
+
+  .luk-menu {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: #2c2520;
+    line-height: 1;
+  }
+
+  @media (max-width: 800px) {
+    nav {
+      display: none;
+    }
+    .hamburger {
+      display: flex;
+    }
   }
 </style>

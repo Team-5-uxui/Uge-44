@@ -3,41 +3,73 @@ const { logo, facebook, instagram, tiktok, mail, phone } = Astro.props;
 ---
 
 <div class="grid_1-1-1">
-    <div>
-<h4>Kontakt os</h4>
-<p>{phone}</p>
-<p>{mail}</p>
+  <div>
+    <h4>Kontakt os</h4>
+    <p>{phone}</p>
+    <p>{mail}</p>
+  </div>
+
+  <div class="some">
+    <img src={facebook} alt="" />
+    <img src={instagram} alt="" />
+    <img src={tiktok} alt="" />
+  </div>
+  <div class="logo">
+    <img src={logo} alt="" />
+  </div>
 </div>
 
-<div class="some">
-    <img src={facebook} alt="">
-    <img src={instagram} alt="">
-    <img src={tiktok} alt="">
-    
-</div>
-<div class="logo">
-<img src={logo} alt="">
-</div>
-</div>
-
-<style>
-
-.grid_1-1-1{
+<style is:global>
+  .grid_1-1-1 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-bottom: 5em;
-    background-color: #F3F3F3;
+    background-color: #f3f3f3;
     padding: 2em;
     border-radius: 30px;
-}
+  }
 
-.some{
+  .some {
     text-align: end;
     margin-top: 4em;
-}
+  }
 
-.logo{
+  .logo {
     text-align: end;
-}
+  }
 
+  @media (max-width: 800px) {
+    .grid_1-1-1 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      margin-bottom: 2em;
+      gap: 0.5em;
+    }
+
+    .logo {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: end;
+    }
+
+    .logo img {
+      height: 90px;
+    }
+
+    .some {
+      grid-column: 2;
+      grid-row: 2;
+      margin-top: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: 0.5em;
+    }
+
+    .some img {
+      height: 35px;
+      width: 35px;
+    }
+  }
 </style>

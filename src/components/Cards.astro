@@ -125,4 +125,67 @@ const { title, img, variant, text, showButton, buttonText, buttonVariant, place,
     max-width: fit-content;
     text-align: center;
   }
+
+  @media (max-width: 800px) {
+    .card-kategori {
+      gap: 1em;
+      padding: 0.25em 1.5em;
+      width: 100%;
+    }
+
+    .card-kategori img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+    }
+
+    .card-kategori h2 {
+      font-size: 1.1rem;
+    }
+
+    .card-event-vertikal img {
+      width: 200px;
+      height: 200px;
+    }
+
+    .card-stotteven {
+      grid-template-columns: 1fr;
+      margin: 1em;
+    }
+
+    .card-stotteven p {
+      max-width: 100%;
+      margin: 0 4em;
+    }
+
+    .card-stotteven img {
+      margin: 0 auto;
+    }
+
+    .card-event {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      margin: 2em 1em;
+      text-align: center;
+      justify-items: center;
+    }
+
+    .card-event h2 {
+      width: fit-content;
+      margin: 1em auto;
+    }
+
+    .card-personer {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      margin: 1em;
+      text-align: center;
+      justify-items: center;
+    }
+
+    .card-personer h2 {
+      width: fit-content;
+      margin: 1em auto;
+    }
+  }
 </style>
