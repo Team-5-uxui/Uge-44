@@ -109,8 +109,8 @@ events.sort((a, b) => a.id - b.id);
   .filter-boks {
     position: sticky;
     top: 2rem;
-    background-color: #3d2b1f;
-    color: white;
+    background-color: var(--primary-brown);
+    color: var(--text-inverted);
     border-radius: 20px;
     padding: 2em;
     display: flex;
@@ -124,45 +124,45 @@ events.sort((a, b) => a.id - b.id);
     border-radius: 10px;
     border: none;
     font-size: 1rem;
-    background-color: white;
-    color: #3d2b1f;
+    background-color: var(--filter-input-bg);
+    color: var(--primary-brown);
     cursor: pointer;
+    margin-bottom: 1em;
   }
 
   .filter-boks h3 {
-    color: white;
+    color: var(--text-inverted);
     margin-bottom: 0.5em;
     margin-top: 0;
   }
 
   @media (max-width: 800px) {
     .side-layout {
-      grid-template-columns: 1fr; /* ← én kolonne */
+      grid-template-columns: 1fr;
       grid-template-rows: auto auto;
     }
 
-    /* Filterboks øverst på mobil */
     .filter-boks {
       grid-row: 1;
-      position: static; /* ← ikke sticky på mobil */
+      position: static;
       margin: 1em 1em 1.5em 1em;
       gap: 1em;
+      border-radius: 15px;
     }
 
     .filter-boks h3 {
-      width: 100%; /* ← titel fylder hele bredden */
+      width: 100%;
     }
 
     .filter-boks label {
-      display: none; /* ← skjul labels, placeholder tekst er nok */
+      display: none;
     }
 
     .filter-boks select {
-      flex: 1; /* ← de to selects deler pladsen */
+      flex: 1;
       min-width: 120px;
     }
 
-    /* Events container under filteret */
     #events-container {
       grid-row: 2;
     }
